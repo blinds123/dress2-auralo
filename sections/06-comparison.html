@@ -1,0 +1,195 @@
+<div id="shopify-section-template--17453745111139__comparison_slider_WHKgrY" class="shopify-section">
+  <style data-shopify>
+    .section-template--17453745111139__comparison_slider_WHKgrY-padding {
+      padding-top: 12px;
+      padding-bottom: 0px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-template--17453745111139__comparison_slider_WHKgrY-padding {
+        padding-top: 16px;
+        padding-bottom: 0px;
+      }
+    }
+
+    .color-scheme-template--17453745111139__comparison_slider_WHKgrY.color-custom {
+      --color-background: 255, 255, 255;
+      --gradient-background: #ffffff;
+
+      --color-foreground: 46, 42, 57;
+      --color-button: 221, 29, 29;
+      --color-button-text: 255, 255, 255;
+      --color-base-outline-button-labels: 221, 29, 29;
+    }
+
+    /* Comparison Slider Styles */
+    .comparison-slider {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .comparison-slider__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .comparison-slider__overlay img {
+      width: 200%;
+      max-width: none;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .comparison-slider__underlay {
+      position: relative;
+      width: 100%;
+    }
+
+    .comparison-slider__underlay img {
+      width: 100%;
+      display: block;
+    }
+
+    .comparison-slider__line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .comparison-slider__arrow-left,
+    .comparison-slider__arrow-right {
+      width: 0;
+      height: 0;
+      border: 8px solid transparent;
+    }
+
+    .comparison-slider__arrow-left {
+      border-right-color: #fff;
+      margin-left: -20px;
+    }
+
+    .comparison-slider__arrow-right {
+      border-left-color: #fff;
+      margin-right: -20px;
+    }
+
+    .comparison-slider__input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: ew-resize;
+      z-index: 4;
+    }
+
+    .comparison-slider__before-text,
+    .comparison-slider__after-text {
+      position: absolute;
+      top: 10px;
+      z-index: 5;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 4px;
+    }
+
+    .comparison-slider__before-text {
+      left: 10px;
+      background: #000;
+      color: #fff;
+    }
+
+    .comparison-slider__after-text {
+      right: 10px;
+      background: #e5ff00;
+      color: #000;
+    }
+  </style>
+  <div
+    class="color-scheme-template--17453745111139__comparison_slider_WHKgrY color-background-1 gradient content-for-grouping animate-section animate--hidden desktop-hidden">
+
+    <div class="page-width section-template--17453745111139__comparison_slider_WHKgrY-padding">
+      <div
+        class="content-and-comparison-slider section-group__container__child-grid content-and-comparison-slider--slider-first">
+
+        <div class="content-container content-rte center animate-item animate-item--child index-0 desktop-index-1">
+          <div class="content-container content-rte center animate-item animate-item--child index-0 desktop-index-1">
+            <h2 class="h2 title-with-highlight" style='--hightlight-color:#000000'>
+              Boring Basics vs. Your Icon Era.
+            </h2>
+            <div class='rte'>
+              <p>Stop settling for "safe" because you fear the scratch. We've reinvented sequins with a silk-soft lining
+                so you can finally be the woman who lights up the room—without the struggle.</p>
+            </div>
+          </div>
+        </div>
+        <comparison-slider class="comparison-slider animate-item animate-item--child index-1 desktop-index-0">
+
+          <div class="comparison-slider__before-text color-accent-2">
+            <h3>THE OLD</h3>
+          </div>
+
+
+          <div class="comparison-slider__after-text color-accent-2">
+            <h3>THE NEW</h3>
+          </div>
+
+          <div class="comparison-slider__overlay color-background-1"><img src="images/comparison/comparison-01.png"
+              alt="The Old Way - Boring Basics"
+              srcset="images/comparison/comparison-01.png 352w, images/comparison/comparison-01.png 450w, images/comparison/comparison-01.png 832w"
+              width="450" loading="lazy">
+          </div>
+          <div class="comparison-slider__line comparison-slider__line--classic color-background-1">
+            <div class="comparison-slider__arrow-left">&nbsp</div>
+            <div class="comparison-slider__arrow-right">&nbsp</div>
+          </div>
+          <input type="range" class="comparison-slider__input" min="0" max="100" value="50">
+          <div class="comparison-slider__underlay color-background-1"><img src="images/comparison/comparison-02.png"
+              alt="The Icon Era - Leopard Sequin Maxi Skirt"
+              srcset="images/comparison/comparison-02.png 352w, images/comparison/comparison-02.png 450w, images/comparison/comparison-02.png 832w"
+              width="450" loading="lazy">
+          </div>
+        </comparison-slider>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Comparison Slider Functionality
+    document.addEventListener('DOMContentLoaded', function () {
+      const sliders = document.querySelectorAll('.comparison-slider');
+      sliders.forEach(slider => {
+        const input = slider.querySelector('.comparison-slider__input');
+        const overlay = slider.querySelector('.comparison-slider__overlay');
+        const line = slider.querySelector('.comparison-slider__line');
+
+        if (input && overlay && line) {
+          input.addEventListener('input', function () {
+            const value = this.value;
+            overlay.style.width = value + '%';
+            line.style.left = value + '%';
+          });
+        }
+      });
+    });
+  </script>
+
+</div>

@@ -1,0 +1,316 @@
+<!-- OPTIMIZED SCRIPTS SECTION - All Shopify app bloat removed -->
+
+<ul hidden>
+  <li id="a11y-refresh-page-message">Choosing a selection results in a full page refresh.</li>
+  <li id="a11y-new-window-message">Opens in a new window.</li>
+</ul>
+
+<script>
+  // Minimal theme strings
+  window.shopUrl = 'https://seqskirt.auralo.store';
+  window.routes = {
+    cart_add_url: '/cart/add',
+    cart_url: '/cart'
+  };
+
+  window.variantStrings = {
+    addToCart: 'Add to cart',
+    soldOut: 'Sold out',
+    unavailable: 'Unavailable'
+  };
+
+  // Force visibility immediately
+  function initAnimations(rootElement = document) {
+    const elementsToAnimate = rootElement.querySelectorAll('.animate-section');
+    elementsToAnimate.forEach(element => {
+      element.classList.add('animate--shown');
+      element.style.opacity = '1';
+      element.style.visibility = 'visible';
+      const items = element.querySelectorAll('.animate-item');
+      items.forEach(item => {
+        item.style.opacity = '1';
+        item.style.visibility = 'visible';
+        item.style.transform = 'none';
+      });
+    });
+  }
+
+  initAnimations(document);
+  document.addEventListener('DOMContentLoaded', () => initAnimations(document));
+</script>
+
+<script>
+  // Force visibility on load
+  (function () {
+    document.documentElement.classList.add('loaded');
+    if (document.body) document.body.classList.add('theme-loaded');
+
+    const forceVisible = () => {
+      document.documentElement.style.visibility = 'visible';
+      if (document.body) document.body.style.visibility = 'visible';
+      const main = document.querySelector('main');
+      if (main) main.style.visibility = 'visible';
+      const content = document.querySelector('.content-for-layout');
+      if (content) content.style.visibility = 'visible';
+    };
+
+    forceVisible();
+    window.addEventListener('load', forceVisible);
+    document.addEventListener('DOMContentLoaded', forceVisible);
+  })();
+</script>
+
+<!-- Lightweight Custom Size Chart (replaces 67KB external script) -->
+<style>
+  .size-chart-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: all 0.2s ease;
+  }
+
+  .size-chart-btn:hover {
+    background: #e8e8e8;
+    border-color: #000;
+  }
+
+  .size-chart-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .size-chart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .size-chart-overlay.active {
+    display: flex;
+  }
+
+  .size-chart-modal {
+    background: #fff;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .size-chart-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .size-chart-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .size-chart-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #666;
+    line-height: 1;
+  }
+
+  .size-chart-content {
+    padding: 24px;
+  }
+
+  .size-chart-content img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .size-chart-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .size-chart-table th,
+  .size-chart-table td {
+    padding: 12px 8px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+
+  .size-chart-table th {
+    background: #f9f9f9;
+    font-weight: 700;
+  }
+
+  .size-chart-table tr:hover td {
+    background: #f5f5f5;
+  }
+
+  .size-chart-note {
+    margin-top: 20px;
+    padding: 16px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #666;
+  }
+</style>
+
+<div class="size-chart-overlay" id="sizeChartOverlay">
+  <div class="size-chart-modal">
+    <div class="size-chart-header">
+      <h2>📏 Size Chart</h2>
+      <button class="size-chart-close"
+        onclick="document.getElementById('sizeChartOverlay').classList.remove('active')">&times;</button>
+    </div>
+    <div class="size-chart-content">
+      <img src="images/universal-assets/size-chart-hero.webp" alt="Size Guide">
+      <table class="size-chart-table">
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Weight (Lbs)</th>
+            <th>Bust (in)</th>
+            <th>Waist (in)</th>
+            <th>Hips (in)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>XS</td>
+            <td>90-110</td>
+            <td>32-34</td>
+            <td>24-26</td>
+            <td>34-36</td>
+          </tr>
+          <tr>
+            <td>S</td>
+            <td>110-130</td>
+            <td>34-36</td>
+            <td>26-28</td>
+            <td>36-38</td>
+          </tr>
+          <tr>
+            <td>M</td>
+            <td>131-160</td>
+            <td>36-38</td>
+            <td>28-30</td>
+            <td>38-40</td>
+          </tr>
+          <tr>
+            <td>L</td>
+            <td>161-190</td>
+            <td>38-40</td>
+            <td>30-32</td>
+            <td>40-42</td>
+          </tr>
+          <tr>
+            <td>XL</td>
+            <td>191-220</td>
+            <td>40-43</td>
+            <td>32-35</td>
+            <td>42-45</td>
+          </tr>
+          <tr>
+            <td>XXL</td>
+            <td>221-260</td>
+            <td>43-46</td>
+            <td>35-38</td>
+            <td>45-48</td>
+          </tr>
+          <tr>
+            <td>XXXL</td>
+            <td>261+</td>
+            <td>46-48</td>
+            <td>38-40</td>
+            <td>48-50</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="size-chart-note">
+        Our products are designed with stretch and flexibility — most women can fit into multiple sizes. For the best
+        fit and maximum comfort, we recommend choosing your size based on our chart above.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Inject Size Chart button after page loads
+  document.addEventListener('DOMContentLoaded', function () {
+    // Find the bundle selector or size select area
+    const bundleSelector = document.querySelector('.bundle-selector-container') ||
+      document.querySelector('.bundle-selector') ||
+      document.querySelector('#bundle-selector-anchor');
+
+    if (bundleSelector) {
+      const btn = document.createElement('button');
+      btn.className = 'size-chart-btn';
+      btn.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M2 12h20M12 2v20M6 6l12 12M18 6L6 18"/>
+        </svg>
+        Size Chart
+      `;
+      btn.onclick = function () {
+        document.getElementById('sizeChartOverlay').classList.add('active');
+      };
+      bundleSelector.parentNode.insertBefore(btn, bundleSelector);
+    }
+
+    // Close on overlay click
+    document.getElementById('sizeChartOverlay').addEventListener('click', function (e) {
+      if (e.target === this) {
+        this.classList.remove('active');
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        document.getElementById('sizeChartOverlay').classList.remove('active');
+      }
+    });
+  });
+</script>
+
+</body>
+
+</html>
