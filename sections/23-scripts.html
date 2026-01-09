@@ -273,14 +273,17 @@
 </div>
 
 <script>
-  // Inject Size Chart button after page loads
+  // Inject Size Chart button at the top of the page
   document.addEventListener('DOMContentLoaded', function () {
-    // Find the bundle selector or size select area
-    const bundleSelector = document.querySelector('.bundle-selector-container') ||
-      document.querySelector('.bundle-selector') ||
-      document.querySelector('#bundle-selector-anchor');
+    // Find the product section (before the product grid)
+    const productSection = document.querySelector('section[data-section*="main"]') ||
+      document.querySelector('.page-width');
 
-    if (bundleSelector) {
+    if (productSection) {
+      // Create button wrapper for proper positioning
+      const btnWrapper = document.createElement('div');
+      btnWrapper.style.cssText = 'text-align: left; margin-bottom: 16px; padding: 0 15px;';
+
       const btn = document.createElement('button');
       btn.className = 'size-chart-btn';
       btn.innerHTML = `
@@ -292,7 +295,10 @@
       btn.onclick = function () {
         document.getElementById('sizeChartOverlay').classList.add('active');
       };
-      bundleSelector.parentNode.insertBefore(btn, bundleSelector);
+
+      btnWrapper.appendChild(btn);
+      // Insert at the very beginning of the section
+      productSection.insertBefore(btnWrapper, productSection.firstChild);
     }
 
     // Close on overlay click
