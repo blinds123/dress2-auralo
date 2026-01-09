@@ -1,46 +1,45 @@
 // Netlify Serverless Function: buy-now
 // Handles checkout POST and returns SimpleSwap exchange URL
 
-const POOL_SERVER_URL = 'https://simpleswap-pool-server.onrender.com';
+const POOL_SERVER_URL = "https://sparkle-hoodie-pool.onrender.com";
 
-exports.handler = async function(event, context) {
+exports.handler = async function (event, context) {
   // CORS headers
   const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Content-Type': 'application/json'
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Content-Type": "application/json",
   };
 
   // Handle preflight
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 200, headers, body: "" };
   }
 
-  if (event.httpMethod !== 'POST') {
+  if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
       headers,
-      body: JSON.stringify({ error: 'Method not allowed' })
+      body: JSON.stringify({ error: "Method not allowed" }),
     };
   }
 
   try {
-    const body = JSON.parse(event.body || '{}');
-    const { amount, product, orderBump } = body;
+    const body = JSON.parse(event.body || "{}");
+    const { amountUSD, amount } = body;
 
-    console.log('Checkout request:', { amount, product, orderBump });
+    // Support both amountUSD (from frontend) and amount (legacy)
+    const finalAmount = amountUSD || amount || 29;
+
+    console.log("Checkout request:", { finalAmount });
 
     // Call pool server to get exchange URL
-    const response = await fetch(`${POOL_SERVER_URL}/api/checkout`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const response = await fetch(`${POOL_SERVER_URL}/buy-now`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        amount: amount || 29,
-        currency: 'USD',
-        product: product || 'leopard-skirt',
-        orderBump: orderBump || false,
-        timestamp: Date.now()
-      })
+        amountUSD: finalAmount,
+      }),
     });
 
     if (!response.ok) {
@@ -48,34 +47,36 @@ exports.handler = async function(event, context) {
     }
 
     const data = await response.json();
-    
-    if (data.exchangeUrl) {
+
+    // Pool server returns { url, exchangeId } or { exchangeUrl, exchangeId }
+    const exchangeUrl = data.url || data.exchangeUrl;
+
+    if (exchangeUrl) {
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ 
-          exchangeUrl: data.exchangeUrl,
-          exchangeId: data.exchangeId 
-        })
+        body: JSON.stringify({
+          exchangeUrl: exchangeUrl,
+          exchangeId: data.exchangeId,
+        }),
       };
     } else {
-      throw new Error('No exchange URL returned');
+      throw new Error("No exchange URL returned");
     }
-
   } catch (error) {
-    console.error('Checkout error:', error);
-    
+    console.error("Checkout error:", error);
+
     // Fallback: return a test URL for development
     // In production, this should return an actual error
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ 
-        exchangeUrl: 'https://simpleswap.io',
+      body: JSON.stringify({
+        exchangeUrl: "https://simpleswap.io",
         error: null,
         fallback: true,
-        message: 'Using fallback - pool server may be initializing'
-      })
+        message: "Using fallback - pool server may be initializing",
+      }),
     };
   }
 };
