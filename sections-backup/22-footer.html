@@ -1,0 +1,65 @@
+<!-- BEGIN sections: footer-group -->
+
+<!-- Sticky Scroll to Order Button -->
+<div id="sticky-order-btn" class="sticky-order-btn"
+  onclick="document.getElementById('bundle-selector-anchor').scrollIntoView({behavior: 'smooth'})">
+  <span>🛒</span> Order Now
+</div>
+<style>
+  .sticky-order-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #000;
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 9998;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    display: none;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .sticky-order-btn:hover {
+    transform: scale(1.05);
+    background: #222;
+  }
+
+  .sticky-order-btn.visible {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .sticky-order-btn {
+      bottom: 15px;
+      right: 15px;
+      padding: 12px 20px;
+      font-size: 14px;
+    }
+  }
+</style>
+<script>
+  // Show sticky button when scrolled past product section
+  document.addEventListener('DOMContentLoaded', function () {
+    const stickyBtn = document.getElementById('sticky-order-btn');
+    const bundleAnchor = document.getElementById('bundle-selector-anchor');
+
+    if (stickyBtn && bundleAnchor) {
+      window.addEventListener('scroll', function () {
+        const anchorRect = bundleAnchor.getBoundingClientRect();
+        if (anchorRect.bottom < 0) {
+          stickyBtn.classList.add('visible');
+        } else {
+          stickyBtn.classList.remove('visible');
+        }
+      });
+    }
+  });
+</script>
+
+<!-- END sections: footer-group -->
