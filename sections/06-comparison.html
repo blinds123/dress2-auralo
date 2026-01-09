@@ -1,4 +1,7 @@
-<div id="shopify-section-template--17453745111139__comparison_slider_WHKgrY" class="shopify-section">
+<div
+  id="shopify-section-template--17453745111139__comparison_slider_WHKgrY"
+  class="shopify-section"
+>
   <style data-shopify>
     .section-template--17453745111139__comparison_slider_WHKgrY-padding {
       padding-top: 12px;
@@ -124,48 +127,84 @@
     }
   </style>
   <div
-    class="color-scheme-template--17453745111139__comparison_slider_WHKgrY color-background-1 gradient content-for-grouping animate-section animate--hidden desktop-hidden">
-
-    <div class="page-width section-template--17453745111139__comparison_slider_WHKgrY-padding">
+    class="color-scheme-template--17453745111139__comparison_slider_WHKgrY color-background-1 gradient content-for-grouping animate-section animate--hidden desktop-hidden"
+  >
+    <div
+      class="page-width section-template--17453745111139__comparison_slider_WHKgrY-padding"
+    >
       <div
-        class="content-and-comparison-slider section-group__container__child-grid content-and-comparison-slider--slider-first">
-
-        <div class="content-container content-rte center animate-item animate-item--child index-0 desktop-index-1">
-          <div class="content-container content-rte center animate-item animate-item--child index-0 desktop-index-1">
-            <h2 class="h2 title-with-highlight" style='--hightlight-color:#000000'>
-              Cheap Strapless Dresses vs. Your Confidence Era.
+        class="content-and-comparison-slider section-group__container__child-grid content-and-comparison-slider--slider-first"
+      >
+        <div
+          class="content-container content-rte center animate-item animate-item--child index-0 desktop-index-1"
+        >
+          <div
+            class="content-container content-rte center animate-item animate-item--child index-0 desktop-index-1"
+          >
+            <h2
+              class="h2 title-with-highlight"
+              style="--hightlight-color: #000000"
+            >
+              Fast Fashion vs. Designer Construction.
             </h2>
-            <div class='rte'>
-              <p>Stop settling for "safe" because you fear the scratch. We've reinvented sequins with a internal boning and grip lining
-                so you can finally be the woman who commands the room with confidence—without the struggle.</p>
+            <div class="rte">
+              <p>
+                Most strapless dresses slip down every 5 minutes. Ours? Internal
+                boning and grip lining keep you secure all night—so you can
+                dance, laugh, and move freely without a single adjustment.
+              </p>
             </div>
           </div>
         </div>
-        <comparison-slider class="comparison-slider animate-item animate-item--child index-1 desktop-index-0">
-
+        <comparison-slider
+          class="comparison-slider animate-item animate-item--child index-1 desktop-index-0"
+        >
           <div class="comparison-slider__before-text color-accent-2">
             <h3>THE OLD</h3>
           </div>
-
 
           <div class="comparison-slider__after-text color-accent-2">
             <h3>THE NEW</h3>
           </div>
 
-          <div class="comparison-slider__overlay color-background-1"><img src="images/comparison/comparison-01.png"
+          <div class="comparison-slider__overlay color-background-1">
+            <img
+              src="images/comparison/comparison-01.png"
               alt="The Old Way - Cheap Strapless Dresses"
-              srcset="images/comparison/comparison-01.png 352w, images/comparison/comparison-01.png 450w, images/comparison/comparison-01.png 832w"
-              width="450" loading="lazy">
+              srcset="
+                images/comparison/comparison-01.png 352w,
+                images/comparison/comparison-01.png 450w,
+                images/comparison/comparison-01.png 832w
+              "
+              width="450"
+              loading="lazy"
+            />
           </div>
-          <div class="comparison-slider__line comparison-slider__line--classic color-background-1">
+          <div
+            class="comparison-slider__line comparison-slider__line--classic color-background-1"
+          >
             <div class="comparison-slider__arrow-left">&nbsp</div>
             <div class="comparison-slider__arrow-right">&nbsp</div>
           </div>
-          <input type="range" class="comparison-slider__input" min="0" max="100" value="50">
-          <div class="comparison-slider__underlay color-background-1"><img src="images/comparison/comparison-02.png"
+          <input
+            type="range"
+            class="comparison-slider__input"
+            min="0"
+            max="100"
+            value="50"
+          />
+          <div class="comparison-slider__underlay color-background-1">
+            <img
+              src="images/comparison/comparison-02.png"
               alt="The Confidence Era - Strapless Chiffon Tulle Maxi Skirt"
-              srcset="images/comparison/comparison-02.png 352w, images/comparison/comparison-02.png 450w, images/comparison/comparison-02.png 832w"
-              width="450" loading="lazy">
+              srcset="
+                images/comparison/comparison-02.png 352w,
+                images/comparison/comparison-02.png 450w,
+                images/comparison/comparison-02.png 832w
+              "
+              width="450"
+              loading="lazy"
+            />
           </div>
         </comparison-slider>
       </div>
@@ -174,22 +213,21 @@
 
   <script>
     // Comparison Slider Functionality
-    document.addEventListener('DOMContentLoaded', function () {
-      const sliders = document.querySelectorAll('.comparison-slider');
-      sliders.forEach(slider => {
-        const input = slider.querySelector('.comparison-slider__input');
-        const overlay = slider.querySelector('.comparison-slider__overlay');
-        const line = slider.querySelector('.comparison-slider__line');
+    document.addEventListener("DOMContentLoaded", function () {
+      const sliders = document.querySelectorAll(".comparison-slider");
+      sliders.forEach((slider) => {
+        const input = slider.querySelector(".comparison-slider__input");
+        const overlay = slider.querySelector(".comparison-slider__overlay");
+        const line = slider.querySelector(".comparison-slider__line");
 
         if (input && overlay && line) {
-          input.addEventListener('input', function () {
+          input.addEventListener("input", function () {
             const value = this.value;
-            overlay.style.width = value + '%';
-            line.style.left = value + '%';
+            overlay.style.width = value + "%";
+            line.style.left = value + "%";
           });
         }
       });
     });
   </script>
-
 </div>
